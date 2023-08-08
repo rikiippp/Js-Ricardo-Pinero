@@ -4,10 +4,10 @@ let ingreso = prompt(`¿Deseas entrar a esta aventura? si/no`).toLowerCase();
 
 while (ingreso === `si`) {
 
-    //Introducción 
+    // Introducción 
     alert(`Estupendo!! sigamos adelante.`);
 
-    //Preguntamos nombre y presentamos
+    // Preguntamos nombre y presentamos
     let nombre = prompt(`¿Como quieres llamarte?`);
 
     alert(`Hola ${nombre}!!, Eres un arqueólogo en busca de un amuleto legendario. Llegaste a una antigua cámara.`);
@@ -59,53 +59,38 @@ while (ingreso === `si`) {
         } else if (decision == 2) {
             // Decision dejar la palanca y salir de la cámara
             alert(`Elegiste ignorar la palanca y volver hacia el exterior. ¡Espero que te vaya genial!`);
-        }else {
-            // Respuesta no valida
-            alert(`Por favor, ingresa una respuesta valida. (1/2)`);
         }
     } else if (eleccion == 2) {
         // Segunda elección
 
-        function afuera (){
+        function afuera() {
             // Función extraterrestre
             let extraterrestre = false
             while (!extraterrestre) {
                 alert(`Mientras investigas por afuera, te encontrás algo reluciente en el suelo...`);
                 let objeto = prompt(`¿Quieres ir a verlo o volver a casa? (ir/volver)`).toLowerCase();
-                if (objeto === `ir`){
+                if (objeto === `ir`) {
                     alert(`Te agachas para agarrarlo, cuando subís la mirada... ¡¡PAAMMM!!. Un ovni te rapto y te llevaron como experimento.
                     DESPIERTA ${nombre}!! VUELVE A ELEGIR.`);
-                    console.log(`ha sido raptado`);
-                } 
+                }
                 if (objeto === `volver`) {
                     // Volvemos a casa
                     alert(`Ya has tenido muchas pesadillas... vuelves a casa para descansar.`);
-                    console.log(`todo ha sido una pesadilla.. `)
                     extraterrestre = true
                 } else {
                     alert(`Asegúrate de ingresar una respuesta valida.`);
                 }
-                }
             }
+        }
         afuera();
 
-        } else if (eleccion == 3){
-            alert(`Lamento que te hayas arrepentido, espero que vuelvas pronto por mas aventuras...`);
-        } else {
-            // Respuesta no valida
-            alert(`Por favor, ingresa una respuesta valida. (1/2/3)`);
-        }
-        
-        // Despedida
-        alert(`Gracias por haber jugado!`);
-        
-        // Preguntamos si desea volver a jugar
-        ingreso = prompt(`Deseas aventurarte nuevamente? (si/no)`).toLowerCase();
-    } 
-
-
-
-
-
-
-
+    } else if (eleccion == 3) {
+        alert(`Lamento que te hayas arrepentido, espero que vuelvas pronto por mas aventuras...`);
+    }
+    
+    // Despedida
+    alert(`Gracias por haber jugado!`);
+    
+    // Preguntamos si desea volver a jugar
+    ingreso = prompt(`Deseas aventurarte nuevamente? (si/no)`).toLowerCase();
+}
