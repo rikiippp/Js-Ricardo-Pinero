@@ -1,0 +1,215 @@
+/*ESTILOS GENERALES*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*NAVBAR*/
+header {
+    background-color: #265C4B;
+    padding: 20px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+header nav h1 {
+    margin-right: 30px;
+}
+
+/*BOTÓN*/
+.button {
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: #FFFFFF !important;
+    font-size: 14px;
+    text-shadow: 1px 1px 0px #285C54;
+    box-shadow: 3px 3px 3px #9fa6b2;
+    padding: 6px 25px;
+    margin: 0 70px;
+    border-radius: 10px;
+    border: 1px solid #398378;
+    background: #398378;
+    background: linear-gradient(to top, #398378, #42968A);
+    transition: all 0.5s;
+    cursor: pointer;
+}
+.button:hover {
+    color: #FFFFFF !important;
+    background: #398378;
+    background: linear-gradient(to top, #265C4B, #589A8D);
+    transform: scale(1.02);
+}
+
+/*SHOP CONTAINER*/
+.shop {
+    width: 100%;
+    margin: 30px auto;
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+}
+/*CARD DE PRODUCTOS*/
+
+.card {
+    width: 16rem;
+    height: 50vh;
+    border-radius: 10px;
+    box-shadow: 0px 1px 5px 0px #7e7e7e;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.card div h5 {
+    text-align: center;
+    font-size: 22px;
+    font-family: "Roboto", sans-serif;
+}
+
+.card div p {
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+}
+
+
+/*MODAL CONTAINER*/
+
+
+.modal-container{
+    width: 40%;
+    margin: 0 10%;
+    max-height: 80vh;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 0px #666666;
+    position: fixed;
+    overflow: auto;
+    top: 8vh;
+    right: -7%;
+}
+.modal-container::-webkit-scrollbar{
+    display: none;
+}
+
+.modal-container .modal-header {
+    height: 40px;
+    background-color: #8abe53;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    text-align: center;
+    
+}
+
+.modal-container .carritoContenido {
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px #666666;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; 
+    width: 95%;
+    height: 14vh;
+}
+
+.modal-container .carritoContenido img {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+}
+
+.modal-container .carritoContenido h5 {
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+}
+
+.modal-container .carritoContenido p {
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+}
+
+
+.modal-container .totalCarrito {
+    height: 40px;
+    bottom: 0;
+    background-color: #8abe53;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*BOTÓN ELIMINAR PRODUCTO*/
+.boton-delete {
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+/*BOTON SUMAR Y RESTAR PRODUCTOS*/
+.restar {
+    cursor: pointer;
+}
+.sumar {
+    cursor: pointer;
+}
+
+/*BOTÓN CERRAR MODAL*/
+.close {
+    background: #265C4B;
+    color: #FFFFFF;
+    line-height: 26px;
+    position: absolute;
+    right: 6px;
+    text-align: center;
+    top: 6px;
+    width: 26px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius:3px;
+    cursor: pointer;
+}
+
+.close:hover {
+    background: rgb(177, 48, 48);
+    color: #FFFFFF;
+}
+
+/*NOTIFICACIÓN DEL CARRITO*/
+.cantidad-carrito {
+    width: 25px;
+    text-align: center;
+    background-color: #8abe53;
+    border-radius: 50%;
+    color: black;
+    font-size: 16px;
+    padding: 4px;
+    top: 38px;
+    right: 40px;
+    position: absolute;
+    display: none;
+}
+
