@@ -49,7 +49,7 @@ productos.forEach((product) => {
 const abrirCarrito = () => {
     modalContainer.innerHTML = "";
     modalContainer.style.display = "block";
-    
+
     // Header del modal
     const modalHeader = document.createElement("div");
     modalHeader.className = "modal-header";
@@ -75,7 +75,10 @@ const abrirCarrito = () => {
             <p>$${product.precio}</p>
             <span class="restar">➖</span>
             <p>cantidad: ${product.cantidad}</p>
-            <span class="sumar">➕</span>`;
+            <span class="sumar">➕</span>
+            <span class="boton-delete">❌</span>
+            `;
+
         modalContainer.appendChild(carritoContenido);
 
         // Eventos para restar y sumar productos
@@ -96,13 +99,10 @@ const abrirCarrito = () => {
         });
 
         // Botón para eliminar productos
-        let botonDelete = document.createElement("span");
-        botonDelete.innerText = "❌";
-        botonDelete.className = "boton-delete";
-        carritoContenido.appendChild(botonDelete);
-
-        // Evento para eliminar producto del carrito
-        botonDelete.addEventListener("click", eliminarProducto);
+        let botonDelete = carritoContenido.querySelector(".boton-delete");
+        botonDelete.addEventListener("click", () => {
+            eliminarProducto(product.id);
+        })
     });
 
     // Muestro el total a pagar
@@ -117,8 +117,8 @@ const abrirCarrito = () => {
 verCarrito.addEventListener("click", abrirCarrito);
 
 // Función para eliminar un producto del carrito
-const eliminarProducto = () => {
-    const productoID = carrito.find((element) => element.id);
+const eliminarProducto = (id) => {
+    const productoID = carrito.find((element) => element.id === id);
     carrito = carrito.filter((carritoID) => {
         return carritoID !== productoID;
     });
@@ -142,4 +142,3 @@ const guardarCarrito = () => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 JSON.parse(localStorage.getItem("carrito"));
-
