@@ -3,7 +3,7 @@ const productos = [
     {
         id: 1,
         nombre: `Aparador de madera `,
-        precio: 139.99,
+        precio: 139,
         img: "./img/armario.jpg",
         cantidad: 1,
     },
@@ -17,7 +17,7 @@ const productos = [
     {
         id: 3,
         nombre: `Silla comedor`,
-        precio: 21.99,
+        precio: 21,
         img: "./img/silla.jpg",
         cantidad: 1,
     },
@@ -31,7 +31,7 @@ const productos = [
     {
         id: 5,
         nombre: `Escritorio moderno`,
-        precio: 112.99,
+        precio: 112,
         img: "./img/escritorio.jpg",
         cantidad: 1,
     },
