@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: "Reboto", sans-serif;
+}
+
 /*NAVBAR*/
 header {
     background-color: #265C4B;
@@ -15,7 +19,6 @@ header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
 }
 
 header nav a {
@@ -23,11 +26,11 @@ header nav a {
     color: #FFFFFF;
     font-size: 30px;
     font-weight: bold;
-    font-family: "Roboto", sans-serif;
 }
 
 header nav h1 {
     margin-right: 30px;
+    cursor: pointer;
 }
 
 /*BOTÓN*/
@@ -82,11 +85,9 @@ header nav h1 {
 .card div h5 {
     text-align: center;
     font-size: 22px;
-    font-family: "Roboto", sans-serif;
 }
 
 .card div p {
-    font-family: "Roboto", sans-serif;
     text-align: center;
     font-size: 18px;
     padding: 10px;
@@ -94,34 +95,35 @@ header nav h1 {
 
 
 /*MODAL CONTAINER*/
-
-
 .modal-container{
     width: 40%;
-    margin: 0 10%;
     max-height: 80vh;
     background-color: #FFFFFF;
     border-radius: 10px;
-    box-shadow: 0px 0px 12px 0px #666666;
+    box-shadow: 0px 5px 12px 0px #666666;
     position: fixed;
     overflow: auto;
     top: 8vh;
-    right: -7%;
+    right: 65px;
 }
 .modal-container::-webkit-scrollbar{
     display: none;
 }
 
 .modal-container .modal-header {
+    width: 770px;
     height: 40px;
+    position: fixed;
+    border-radius: 10px 10px 0 0;
     background-color: #8abe53;
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
     text-align: center;
-    
 }
 
-.modal-container .carritoContenido {
+.modal-body {
+    margin-top: 50px;
+}
+
+.modal-container .modal-body .carritoContenido {
     margin: 10px auto;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 0px #666666;
@@ -134,28 +136,26 @@ header nav h1 {
     height: 14vh;
 }
 
-.modal-container .carritoContenido img {
+.modal-container .modal-body .carritoContenido img {
     width: 120px;
     height: 160px;
     object-fit: cover;
 }
 
-.modal-container .carritoContenido h5 {
+.modal-container .modal-body .carritoContenido h5 {
     font-size: 18px;
-    font-family: "Roboto", sans-serif;
 }
 
-.modal-container .carritoContenido p {
+.modal-container .modal-body .carritoContenido p {
     font-size: 18px;
-    font-family: "Roboto", sans-serif;
 }
 
 
 .modal-container .totalCarrito {
+    position: sticky;    
     height: 40px;
     bottom: 0;
     background-color: #8abe53;
-    font-family: "Roboto", sans-serif;
     font-size: 18px;
     font-weight: bold;
     display: flex;

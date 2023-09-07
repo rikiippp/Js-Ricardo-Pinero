@@ -7,6 +7,7 @@ let verCarrito = document.getElementById("verCarrito");
 let modalContainer = document.getElementById("modalContainer");
 let cantidadCarrito = document.getElementById("cantidadCarrito");
 
+
 // Muestro productos en la tienda que permite agregarlos al carrito
 productos.forEach((product) => {
     // Creo una tarjeta para cada producto
@@ -56,6 +57,11 @@ const abrirCarrito = () => {
     modalHeader.innerHTML = `<h1>Carrito</h1>`;
     modalContainer.appendChild(modalHeader);
 
+    // Body del modal 
+    const modalBody = document.createElement("div");
+    modalBody.className = "modal-body";
+    modalContainer.appendChild(modalBody);
+
     // Botón cerrar del modal
     const modalButton = document.createElement("h1");
     modalButton.className = "close";
@@ -79,7 +85,7 @@ const abrirCarrito = () => {
             <span class="boton-delete">❌</span>
             `;
 
-        modalContainer.appendChild(carritoContenido);
+        modalBody.appendChild(carritoContenido);
 
         // Eventos para restar y sumar productos
         let restar = carritoContenido.querySelector(".restar");
@@ -126,6 +132,11 @@ const eliminarProducto = (id) => {
     guardarCarrito();
     abrirCarrito();
 };
+
+// Mensaje si hay productos en el carrito
+if (carrito.length >0) {
+    Swal.fire('Tienes productos en tu carrito');
+}
 
 // Actualizo el contador de productos en el carrito
 const carritoContador = () => {
