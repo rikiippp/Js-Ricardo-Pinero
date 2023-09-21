@@ -11,7 +11,7 @@ body {
 
 /*NAVBAR*/
 header {
-    background-color: #265C4B;
+    background-color: #07110e;
     padding: 20px;
 }
 
@@ -23,9 +23,10 @@ header nav {
 
 header nav a {
     text-decoration: none;
-    color: #FFFFFF;
-    font-size: 30px;
-    font-weight: bold;
+}
+
+header nav  a img {
+    width: 300px;
 }
 
 header nav h1 {
@@ -200,14 +201,14 @@ header nav h1 {
 
 /*NOTIFICACIÓN DEL CARRITO*/
 .cantidad-carrito {
-    width: 25px;
+    width: 28px;
     text-align: center;
     background-color: #8abe53;
     border-radius: 50%;
     color: black;
     font-size: 16px;
     padding: 4px;
-    top: 38px;
+    top: 55px;
     right: 40px;
     position: absolute;
     display: none;
