@@ -152,7 +152,7 @@ header nav h1 {
 }
 
 
-.modal-container .totalCarrito {
+.modal-container .footer-carrito {
     position: sticky;    
     height: 40px;
     bottom: 0;

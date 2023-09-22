@@ -1,50 +1,87 @@
-// Carrito para almacenar los productos
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
 // Obtengo los elementos del html
 let shopContent = document.getElementById("shopContent");
 let verCarrito = document.getElementById("verCarrito");
 let modalContainer = document.getElementById("modalContainer");
 let cantidadCarrito = document.getElementById("cantidadCarrito");
 
-
-// Muestro productos en la tienda que permite agregarlos al carrito
-productos.forEach((product) => {
-    // Creo una tarjeta para cada producto
-    let contenido = document.createElement("div");
-    contenido.className = "card";
-    contenido.innerHTML = `<img src="${product.img}"><div><h5>${product.nombre}</h5><p>$${product.precio}</p></div>`;
-    shopContent.appendChild(contenido);
-
-    // Agrego un botón "COMPRAR" para agregar productos al carrito
-    let comprar = document.createElement("button");
-    comprar.className = "button";
-    comprar.innerText = "COMPRAR";
-    contenido.appendChild(comprar);
-
-    // Evento para agregar productos al carrito
-    comprar.addEventListener("click", () => {
-        const repetido = carrito.some((productoRepetido) => productoRepetido.id === product.id);
-        if (repetido) {
-            carrito.map((prod) => {
-                if (prod.id === product.id) {
-                    prod.cantidad++;
-                }
-            });
-        } else {
-            // Agrego los productos seleccionados al carrito 
-            carrito.push({
-                id: product.id,
-                img: product.img,
-                nombre: product.nombre,
-                precio: product.precio,
-                cantidad: 1,
-            });
+// Función para cargar datos desde un archivo JSON local
+async function cargarDatosDesdeJSON() {
+    try {
+        const response = await fetch('../JSON/productos.json');
+        if (!response.ok) {
+            throw new Error('No se pudo cargar los datos JSON.');
         }
-        carritoContador();
-        guardarCarrito();
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+// Llamar a la función para cargar los datos
+cargarDatosDesdeJSON()
+    .then((productos) => {
+        // Muestro productos en la tienda que permite agregarlos al carrito
+        productos.forEach((product) => {
+            // Creo una tarjeta para cada producto
+            let contenido = document.createElement("div");
+            contenido.className = "card";
+            contenido.innerHTML = `<img src="${product.img}"><div><h5>${product.nombre}</h5><p>$${product.precio}</p></div>`;
+            shopContent.appendChild(contenido);
+
+            // Agrego un botón "COMPRAR" para agregar productos al carrito
+            let comprar = document.createElement("button");
+            comprar.className = "button";
+            comprar.innerText = "COMPRAR";
+            contenido.appendChild(comprar);
+
+            // Evento para agregar productos al carrito
+            comprar.addEventListener("click", () => {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    width: '20em',
+                    padding: '10px',
+                    position: 'bottom-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                  })
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Se agrego con éxito'
+                  })
+                const repetido = carrito.some((productoRepetido) => productoRepetido.id === product.id);
+                if (repetido) {
+                    carrito.map((prod) => {
+                        if (prod.id === product.id) {
+                            prod.cantidad++;
+                        }
+                    });
+                } else {
+                    // Agrego los productos seleccionados al carrito 
+                    carrito.push({
+                        id: product.id,
+                        img: product.img,
+                        nombre: product.nombre,
+                        precio: product.precio,
+                        cantidad: 1,
+                    });
+                }
+                carritoContador();
+                guardarCarrito();
+            });
+        });
+    })
+    .catch((error) => {
+        
     });
-});
+
+
+
+// Carrito para almacenar los productos
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
 
 // Función para mostrar el carrito en un modal
 const abrirCarrito = () => {
@@ -114,8 +151,11 @@ const abrirCarrito = () => {
     // Muestro el total a pagar
     const total = carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0);
     const mostrarTotal = document.createElement("div");
-    mostrarTotal.className = "totalCarrito";
-    mostrarTotal.innerHTML = `Total a pagar: $${total}`;
+    mostrarTotal.className = "footer-carrito";
+    mostrarTotal.innerHTML = `
+    <p>Total a pagar: $${total}</p>
+    <a><button>Pagar ahora</button></a>
+    `;
     modalContainer.appendChild(mostrarTotal);
 };
 
@@ -134,8 +174,11 @@ const eliminarProducto = (id) => {
 };
 
 // Mensaje si hay productos en el carrito
-if (carrito.length >0) {
-    Swal.fire('Tienes productos en tu carrito');
+if (carrito.length > 0) {
+    Swal.fire({
+        title: 'Tienes productos en tu carrito',
+        confirmButtonColor: `#265C4B`,
+    });
 }
 
 // Actualizo el contador de productos en el carrito
