@@ -14,7 +14,8 @@ async function cargarDatosDesdeJSON() {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.log("Error en la solicitus " + error);
+        console.log("Error en la solicitud " + error);
+        return [];
     }
 }
 
@@ -26,7 +27,7 @@ cargarDatosDesdeJSON()
             // Creo una tarjeta para cada producto
             let contenido = document.createElement("div");
             contenido.className = "card";
-            contenido.innerHTML = `<img src="${product.img}"><div><h5>${product.nombre}</h5><p>$${product.precio}</p></div>`;
+            contenido.innerHTML = `<img src="${product.img}"><div><h5>${product.nombre}</h5><p>$${product.precio}</p></div>`;         
             shopContent.appendChild(contenido);
 
             // Agrego un botón "COMPRAR" para agregar productos al carrito
@@ -45,11 +46,11 @@ cargarDatosDesdeJSON()
                     showConfirmButton: false,
                     timer: 2000,
                     timerProgressBar: true,
-                  })
-                  Toast.fire({
+                })
+                Toast.fire({
                     icon: 'success',
                     title: 'Se agrego con éxito'
-                  })
+                })
                 const repetido = carrito.some((productoRepetido) => productoRepetido.id === product.id);
                 if (repetido) {
                     carrito.map((prod) => {
@@ -73,7 +74,7 @@ cargarDatosDesdeJSON()
         });
     })
     .catch((error) => {
-        
+        console.error(error);
     });
 
 
@@ -153,7 +154,7 @@ const abrirCarrito = () => {
     mostrarTotal.className = "footer-carrito";
     mostrarTotal.innerHTML = `
     <p>Total a pagar: $${total}</p>
-    <a><button>Pagar ahora</button></a>
+    <a href="./formulario.html"><button class="btn-pagar">Pagar ahora</button></a>
     `;
     modalContainer.appendChild(mostrarTotal);
 };
