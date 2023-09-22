@@ -14,8 +14,7 @@ async function cargarDatosDesdeJSON() {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error(error);
-        return [];
+        console.log("Error en la solicitus " + error);
     }
 }
 
