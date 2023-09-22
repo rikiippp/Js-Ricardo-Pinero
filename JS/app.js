@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para cargar datos desde un archivo JSON local
     async function cargarDatosDesdeJSON() {
         try {
-            const response = await fetch('../JSON/productos.json');
+            const response = await fetch('./JSON/productos.json');
             if (!response.ok) {
                 throw new Error('No se pudo cargar los datos JSON.');
             }
             const data = await response.json();
+            console.log(data);
             return data;
         } catch (error) {
             console.log("Error en la solicitud " + error);
