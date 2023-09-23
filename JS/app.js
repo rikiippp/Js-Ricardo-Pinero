@@ -1,3 +1,5 @@
+
+
 // Obtengo los elementos del html
 let shopContent = document.getElementById("shopContent");
 let verCarrito = document.getElementById("verCarrito");
@@ -39,19 +41,20 @@ cargarDatosDesdeJSON()
 
             // Evento para agregar productos al carrito
             comprar.addEventListener("click", () => {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    width: '20em',
-                    padding: '10px',
-                    position: 'bottom-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                })
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Se agrego con éxito'
-                })
+
+                Toastify({
+                    text: "Añadido con éxito",
+                    duration: 2500,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to left, #07110e, #8abe53)",
+                    },
+                }).showToast();
+
                 const repetido = carrito.some((productoRepetido) => productoRepetido.id === product.id);
                 if (repetido) {
                     carrito.map((prod) => {
@@ -176,10 +179,7 @@ const eliminarProducto = (id) => {
 
 // Mensaje si hay productos en el carrito
 if (carrito.length > 0) {
-    Swal.fire({
-        title: 'Tienes productos en tu carrito',
-        confirmButtonColor: `#265C4B`,
-    });
+    Swal.fire('Tienes productos en el carrito')
 }
 
 // Actualizo el contador de productos en el carrito

@@ -97,7 +97,7 @@ header nav h1 {
 
 /*MODAL CONTAINER*/
 .modal-container{
-    width: 40%;
+    width: 600px;
     max-height: 80vh;
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -112,11 +112,11 @@ header nav h1 {
 }
 
 .modal-container .modal-header {
-    width: 770px;
+    width: 600px;
     height: 40px;
     position: fixed;
     border-radius: 10px 10px 0 0;
-    background-color: #8abe53;
+    background-color: #398378;
     text-align: center;
 }
 
@@ -154,9 +154,9 @@ header nav h1 {
 
 .modal-container .footer-carrito {
     position: sticky;    
-    height: 40px;
+    height: 50px;
     bottom: 0;
-    background-color: #8abe53;
+    background-color: #398378;
     font-size: 18px;
     font-weight: bold;
     display: flex;
@@ -180,7 +180,7 @@ header nav h1 {
 
 /*BOTÓN CERRAR MODAL*/
 .close {
-    background: #265C4B;
+    background: #17362c;
     color: #FFFFFF;
     line-height: 26px;
     position: absolute;
@@ -193,11 +193,30 @@ header nav h1 {
     border-radius:3px;
     cursor: pointer;
 }
-
 .close:hover {
     background: rgb(177, 48, 48);
     color: #FFFFFF;
 }
+
+/*BOTÓN PAGAR*/
+.btn-pagar {
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: #000000;
+    font-size: 14px;
+    padding: 6px 25px;
+    margin: 0 70px;
+    border-radius: 5px;
+    border: 1px solid #8abe53;
+    background: #8abe53;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+.btn-pagar:hover {
+    transform: scale(1.02);
+}
+
 
 /*NOTIFICACIÓN DEL CARRITO*/
 .cantidad-carrito {
@@ -213,4 +232,5 @@ header nav h1 {
     position: absolute;
     display: none;
 }
+
 
