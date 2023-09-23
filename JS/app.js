@@ -1,5 +1,3 @@
-
-
 // Obtengo los elementos del html
 let shopContent = document.getElementById("shopContent");
 let verCarrito = document.getElementById("verCarrito");
@@ -17,7 +15,7 @@ async function cargarDatosDesdeJSON() {
         console.log(data);
         return data;
     } catch (error) {
-        console.log("Error en la solicitud " + error);
+        console.log(error);
         return [];
     }
 }
@@ -42,19 +40,7 @@ cargarDatosDesdeJSON()
             // Evento para agregar productos al carrito
             comprar.addEventListener("click", () => {
 
-                Toastify({
-                    text: "Añadido con éxito",
-                    duration: 2500,
-                    newWindow: true,
-                    close: true,
-                    gravity: "top", // `top` or `bottom`
-                    position: "right", // `left`, `center` or `right`
-                    stopOnFocus: true, // Prevents dismissing of toast on hover
-                    style: {
-                        background: "linear-gradient(to left, #07110e, #8abe53)",
-                    },
-                }).showToast();
-
+                //Busco que sea el mismo producto para sumarle la cantidad
                 const repetido = carrito.some((productoRepetido) => productoRepetido.id === product.id);
                 if (repetido) {
                     carrito.map((prod) => {
@@ -71,9 +57,23 @@ cargarDatosDesdeJSON()
                         precio: product.precio,
                         cantidad: 1,
                     });
+
                 }
                 carritoContador();
                 guardarCarrito();
+
+                Toastify({ // Libreria para la notifiacion
+                    text: "Añadido con éxito",
+                    duration: 2500,
+                    newWindow: true,
+                    close: true,
+                    gravity: "bottom", // `top` or `bottom`
+                    position: "right", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "linear-gradient(to left, #07110e, #8abe53)",
+                    },
+                }).showToast();
             });
         });
     })
@@ -149,6 +149,18 @@ const abrirCarrito = () => {
         let botonDelete = carritoContenido.querySelector(".boton-delete");
         botonDelete.addEventListener("click", () => {
             eliminarProducto(product.id);
+            Toastify({
+                text: "Producto eliminado",
+                duration: 2500,
+                newWindow: true,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                    background: "linear-gradient(to left, #CF5353, #CF3030)",
+                },
+            }).showToast();
         })
     });
 
@@ -158,9 +170,24 @@ const abrirCarrito = () => {
     mostrarTotal.className = "footer-carrito";
     mostrarTotal.innerHTML = `
         <p>Total a pagar: $${total}</p>
-        <a href="./formulario.html"><button class="btn-pagar">Pagar ahora</button></a>
+        <a href="./compra.html" class="pagar-ahora"><button class="btn-pagar">Ir a comprar</button></a>
         `;
     modalContainer.appendChild(mostrarTotal);
+
+    // Evento para mostrar el mensaje si no hay productos en el carrito al hacer clic en "Ir a comprar"
+    let irAComprarButton = document.querySelector(".pagar-ahora button.btn-pagar");
+    irAComprarButton.addEventListener("click", (event) => {
+        if (carrito.length == 0) {
+            event.preventDefault(); // Evito que se redireccione
+            Swal.fire({
+                icon: 'error',
+                title: 'No tienes productos en el carrito',
+                showConfirmButton: false,
+                timer: 1500,
+                position: 'top',
+            });
+        }
+    });
 };
 
 // Evento para abrir el carrito
@@ -179,7 +206,11 @@ const eliminarProducto = (id) => {
 
 // Mensaje si hay productos en el carrito
 if (carrito.length > 0) {
-    Swal.fire('Tienes productos en el carrito')
+    Swal.fire({
+        title: 'Tienes productos en tu carrito',
+        position: 'top',
+        confirmButtonColor: '#398378',
+    })
 }
 
 // Actualizo el contador de productos en el carrito
