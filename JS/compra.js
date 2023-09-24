@@ -3,8 +3,9 @@ function actualizarTotal() {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const total = carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0);
     const totalCarrito = document.getElementById("totalCarrito");
-
+    
     totalCarrito.textContent = total ? `Total: $${total}` : "Total: $0";
+    
 }
 
 // Función para cargar y mostrar los productos en la tabla de compra.html
@@ -47,16 +48,6 @@ function mostrarProductosEnCarrito() {
     actualizarTotal();
 }
 
-// Función para calcular y mostrar el total
-function actualizarTotal() {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const total = carrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0);
-    const totalCarrito = document.getElementById("totalCarrito");
-
-    totalCarrito.textContent = total ? `Total: $ ${total}` : "Total: $ 0";
-}
-actualizarTotal();
-
 // Evento para el botón "Confirmar Compra"
 const confirmarCompraButton = document.getElementById("confirmarCompra");
 if (confirmarCompraButton) {
@@ -97,5 +88,3 @@ if (confirmarCompraButton) {
 
 // Llamo a la función para mostrar los productos cuando se carga la página
 document.addEventListener("DOMContentLoaded", mostrarProductosEnCarrito);
-
-
