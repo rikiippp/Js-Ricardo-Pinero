@@ -10,10 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <title>Formulario de compra</title>
+    <title>Hogar en Armonía</title>
     <!--CSS-->
     <link rel="stylesheet" href="./CSS/style.css">
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -26,29 +27,37 @@
     </header>
 
     <main>
-        <h1>Formulario de Envío de Compra</h1>
-        <form id="formularioCompra">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br><br>
-
-            <label for="direccion">Dirección de Envío:</label>
-            <input type="text" id="direccion" name="direccion" required><br><br>
-
-            <label for="producto">Producto:</label>
-            <input type="text" id="producto" name="producto" required><br><br>
-
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" id="cantidad" name="cantidad" required><br><br>
-
-            <input type="submit" value="Enviar Compra">
-        </form>
-
-        <div id="respuesta"></div>
-
-
-
-        <!--Modal Contenedor-->
-        <div id="modalContainer" class="modal-container"></div>
+        <h1>Orden de compra</h1>
+        <div id="formularioContainer">
+            <form id="formularioCompra">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" placeholder="Ingrese su nombre">
+                <label for="phone">Teléfono</label>
+                <input type="tel" name="phone" id="phone" required pattern="[0-9]+" placeholder="Ingrese su numero">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Ingrese su email">
+            </form>
+        </div>
+        
+        
+        <!--Tabla de compra-->
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="tablaCarrito">
+                <!-- Aquí se llenará la tabla con los productos del carrito -->
+            </tbody>
+        </table>
+        <a class="btn-backmain" href="./index.html">Volver a la Tienda</a>
+        <div id="totalCarrito">Total: $0</div>
+        <button id="confirmarCompra">Confirmar Compra</button>
     </main>
 
 
@@ -57,11 +66,9 @@
 
     <!--Scripts utilizados-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-    <script src="./JS/form.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./JS/app.js"></script>
+    <script src="./JS/compra.js"></script>
 
 </body>
 
 </html>
-
-

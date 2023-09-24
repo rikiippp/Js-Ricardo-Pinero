@@ -81,8 +81,6 @@ cargarDatosDesdeJSON()
         console.error(error);
     });
 
-
-
 // Carrito para almacenar los productos
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -161,7 +159,7 @@ const abrirCarrito = () => {
                     background: "linear-gradient(to left, #CF5353, #CF3030)",
                 },
             }).showToast();
-        })
+        });
     });
 
     // Muestro el total a pagar
@@ -205,17 +203,18 @@ const eliminarProducto = (id) => {
 };
 
 // Mensaje si hay productos en el carrito
-if (carrito.length > 0) {
+// Verifica si la página permite mostrar el mensaje
+const mostrarMensaje = document.querySelector('meta[name="mostrar-mensaje"]').getAttribute("content");
+(mostrarMensaje === "si" && carrito.length > 0) ?
     Swal.fire({
         title: 'Tienes productos en tu carrito',
         position: 'top',
         confirmButtonColor: '#398378',
-    })
-}
+    }) : null;
 
 // Actualizo el contador de productos en el carrito
 const carritoContador = () => {
-    cantidadCarrito.style.display = "block";
+    cantidadCarrito.style.display = carrito.length > 0 ? "block" : "none";
     cantidadCarrito.innerText = carrito.length;
     const carritoLocal = carrito.length;
     localStorage.setItem("cantidadProductos", JSON.stringify(carritoLocal));

@@ -25,7 +25,7 @@ header nav a {
     text-decoration: none;
 }
 
-header nav  a img {
+header nav a img {
     width: 300px;
 }
 
@@ -52,6 +52,7 @@ header nav h1 {
     transition: all 0.5s;
     cursor: pointer;
 }
+
 .button:hover {
     color: #FFFFFF !important;
     background: #398378;
@@ -67,8 +68,8 @@ header nav h1 {
     display: flex;
     justify-content: center;
 }
-/*CARD DE PRODUCTOS*/
 
+/*CARD DE PRODUCTOS*/
 .card {
     width: 16rem;
     height: 50vh;
@@ -94,9 +95,8 @@ header nav h1 {
     padding: 10px;
 }
 
-
 /*MODAL CONTAINER*/
-.modal-container{
+.modal-container {
     width: 600px;
     max-height: 80vh;
     background-color: #FFFFFF;
@@ -105,9 +105,10 @@ header nav h1 {
     position: fixed;
     overflow: auto;
     top: 8vh;
-    right: 65px;
+    right: 70px;
 }
-.modal-container::-webkit-scrollbar{
+
+.modal-container::-webkit-scrollbar {
     display: none;
 }
 
@@ -115,7 +116,7 @@ header nav h1 {
     width: 600px;
     height: 40px;
     position: fixed;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 0 0 0;
     background-color: #398378;
     text-align: center;
 }
@@ -132,7 +133,7 @@ header nav h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 95%;
     height: 14vh;
 }
@@ -151,9 +152,8 @@ header nav h1 {
     font-size: 18px;
 }
 
-
 .modal-container .footer-carrito {
-    position: sticky;    
+    position: sticky;
     height: 50px;
     bottom: 0;
     background-color: #398378;
@@ -174,6 +174,7 @@ header nav h1 {
 .restar {
     cursor: pointer;
 }
+
 .sumar {
     cursor: pointer;
 }
@@ -190,9 +191,10 @@ header nav h1 {
     width: 26px;
     text-decoration: none;
     font-weight: bold;
-    border-radius:3px;
+    border-radius: 3px;
     cursor: pointer;
 }
+
 .close:hover {
     background: rgb(177, 48, 48);
     color: #FFFFFF;
@@ -213,10 +215,10 @@ header nav h1 {
     transition: all 0.5s;
     cursor: pointer;
 }
+
 .btn-pagar:hover {
     transform: scale(1.02);
 }
-
 
 /*NOTIFICACIÓN DEL CARRITO*/
 .cantidad-carrito {
@@ -233,4 +235,110 @@ header nav h1 {
     display: none;
 }
 
+/*--ESTILOS PAGINA COMPRA--*/
+main > h1 {
+    text-align: center;
+    margin: 30px;
 
+}
+#formularioCompra {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#formularioCompra label {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+}
+
+#formularioCompra input {
+    margin: 10px 0;
+    width: 40%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilos para la tabla */
+table {
+    margin: 50px auto;
+    width: 70%;
+    border-collapse: collapse;
+    color: black;
+    /* Texto blanco */
+}
+
+table th {
+    font-family: "Reboto", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    /* Bordes blancos */
+    font-family: "Reboto", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+/* Estilos para el enlace "Volver a la Tienda" */
+.btn-backmain {
+    display: inline-block;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-backmain:hover {
+    background-color: #555;
+}
+
+.cantidad {
+    width: 100px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+
+}
+.img-lista {
+    width: 17rem;
+    height: 23vh;
+}
+
+.img-lista img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilos para el botón de confirmar compra */
+#confirmarCompra {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilos para el total */
+#totalCarrito {
+    font-size: 24px;
+    margin-top: 20px;
+}
