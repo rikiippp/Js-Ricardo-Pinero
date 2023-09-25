@@ -20,66 +20,68 @@ async function cargarDatosDesdeJSON() {
     }
 }
 
-// Llamar a la función para cargar los datos
-cargarDatosDesdeJSON()
-    .then((productos) => {
-        // Muestro productos en la tienda que permite agregarlos al carrito
+// Función para crear una tarjeta de producto
+function crearTarjetaProducto(product) {
+    const { img, nombre, precio } = product;
+
+    const contenido = document.createElement("div");
+    contenido.className = "card";
+    contenido.innerHTML = `<img src="${img}"><div><h5>${nombre}</h5><p>$${precio}</p></div>`;
+
+    const comprar = document.createElement("button");
+    comprar.className = "button";
+    comprar.innerText = "COMPRAR";
+    comprar.addEventListener("click", () => agregarAlCarrito(product));
+    
+    contenido.appendChild(comprar);
+
+    return contenido;
+}
+
+// Agregar productos al carrito
+function agregarAlCarrito(product) {
+    const repetido = carrito.find((productoRepetido) => productoRepetido.id === product.id);
+
+    if (repetido) {
+        repetido.cantidad++;
+    } else {
+        carrito.push({ ...product, cantidad: 1 });
+    }
+
+    carritoContador();
+    guardarCarrito();
+
+    mostrarNotificacion("Añadido con éxito");
+}
+
+// Función para mostrar una notificación
+function mostrarNotificacion(mensaje) {
+    Toastify({
+        text: mensaje,
+        duration: 2500,
+        newWindow: true,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        style: {
+            background: "linear-gradient(to left, #07110e, #8abe53)",
+        },
+    }).showToast();
+}
+
+// Cargar datos y mostrar productos
+async function cargarProductos() {
+    try {
+        const productos = await cargarDatosDesdeJSON();
+        
         productos.forEach((product) => {
-            // Creo una tarjeta para cada producto
-            let contenido = document.createElement("div");
-            contenido.className = "card";
-            contenido.innerHTML = `<img src="${product.img}"><div><h5>${product.nombre}</h5><p>$${product.precio}</p></div>`;
-            shopContent.appendChild(contenido);
-
-            // Agrego un botón "COMPRAR" para agregar productos al carrito
-            let comprar = document.createElement("button");
-            comprar.className = "button";
-            comprar.innerText = "COMPRAR";
-            contenido.appendChild(comprar);
-
-            // Evento para agregar productos al carrito
-            comprar.addEventListener("click", () => {
-
-                //Busco que sea el mismo producto para sumarle la cantidad
-                const repetido = carrito.some((productoRepetido) => productoRepetido.id === product.id);
-                if (repetido) {
-                    carrito.map((prod) => {
-                        if (prod.id === product.id) {
-                            prod.cantidad++;
-                        }
-                    });
-                } else {
-                    // Agrego los productos seleccionados al carrito 
-                    carrito.push({
-                        id: product.id,
-                        img: product.img,
-                        nombre: product.nombre,
-                        precio: product.precio,
-                        cantidad: 1,
-                    });
-
-                }
-                carritoContador();
-                guardarCarrito();
-
-                Toastify({ // Libreria para la notifiacion
-                    text: "Añadido con éxito",
-                    duration: 2500,
-                    newWindow: true,
-                    close: true,
-                    gravity: "bottom", // `top` or `bottom`
-                    position: "right", // `left`, `center` or `right`
-                    stopOnFocus: true, // Prevents dismissing of toast on hover
-                    style: {
-                        background: "linear-gradient(to left, #07110e, #8abe53)",
-                    },
-                }).showToast();
-            });
+            const tarjetaProducto = crearTarjetaProducto(product);
+            shopContent.appendChild(tarjetaProducto);
         });
-    })
-    .catch((error) => {
+    } catch (error) {
         console.error(error);
-    });
+    }
+}
 
 // Carrito para almacenar los productos
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -227,3 +229,9 @@ const guardarCarrito = () => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 JSON.parse(localStorage.getItem("carrito"));
+
+// Llamar a la función para cargar los productos
+cargarProductos();
+
+// Evento para abrir el carrito
+verCarrito.addEventListener("click", abrirCarrito);
